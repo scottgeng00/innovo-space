@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block app_content %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Register</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static',filename='css/login.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/stylish-portfolio.min.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static',filename='vendor/simple-line-icons/css/simple-line-icons.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+
+
+
+  </head>
+
+    <!-- Navigation -->
+    <a class="menu-toggle rounded" href="#">
+      <i class="fas fa-bars"></i>
+    </a>
+    <nav id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+          {% if current_user.is_anonymous %}
+          <a class="js-scroll-trigger">Innovo</a>
+          {% else %}
+          <a class="js-scroll-trigger">Hi {{ current_user.username }}!</a>
+          {% endif %}
+        </li>
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="{{ url_for('index') }}">Home</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="{{ url_for('about') }}">About</a>
+        </li>
+  
+        {% if current_user.is_anonymous %}
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="{{ url_for('login') }}">Login/Register</a>
+        </li>
+        {% else %}
+  
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="{{ url_for('forums') }}">Forums</a>
+        </li>
+  
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="{{ url_for('user', username=current_user.username) }}">My Profile</a>
+        </li>
+  
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="{{ url_for('logout') }}">Logout</a>
+        </li>
+        {% endif %}
+  
+      </ul>
+    </nav>
+
+    <body class="text-center">
+
+        <form class="form-register" method="POST">
+            <img class="mb-4" src="static\img\LogoSmalloffWhite.png" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Introduce yourself!</h1>
+            {{ form.csrf_token }}
+            
+            {{ wtf.form_field(form.username, class='form-control', 
+            placeholder='username') }}
+
+            {{ wtf.form_field(form.password, class="form-control", placeholder="password") }}
+            {{ wtf.form_field(form.passwordV, class='form-control', placeholder="password") }}
+            {{ wtf.form_field(form.email, class='form-control', placeholder="a@example.com") }}
+            {{ wtf.form_field(form.utype, class='form-control') }}
+            {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
+
+        </form>
+
+
+    </body>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{url_for('static', filename = 'vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{{ url_for('static',filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    
+    <script src="{{ url_for('static',filename='js/stylish-portfolio.min.js') }}"></script>
+
+
+{% endblock %}
+
+

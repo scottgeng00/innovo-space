@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block app_content %}
+    {{ wtf.quick_form(form) }}
+    <div class = "container2">
+        <h2> Volunteer option: Help make healthcare more accessible to the public by volunteering your time on the forums and live chat! </h2> 
+    {% if error %}
+        <div class="container">
+            <div class="jumbotron jumbotron">
+                <h2>{{ error }}</h2>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if congrats %}
+        <div class = "container1">
+            <div class = "jumbotron jumbotron1">
+                <h2>{{congrats}}
+            </div>
+        </div>
+    {% endif %}
+
+
+    <a href="{{ url_for('index') }}"> Back to Home Page </a>
+{% endblock %}
+

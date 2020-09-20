@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Innovo</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="{{ url_for('static',filename='vendor/simple-line-icons/css/simple-line-icons.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static',filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+
+
+  <!-- Custom CSS -->
+  <link href="{{ url_for('static',filename='css/stylish-portfolio.min.css') }}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <a class="menu-toggle rounded" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        {% if current_user.is_anonymous %}
+        <a class="js-scroll-trigger">Innovo</a>
+        {% else %}
+        <a class="js-scroll-trigger">Hi {{ current_user.username }}!</a>
+        {% endif %}
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{{ url_for('index') }}">Home</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{{ url_for('about') }}">About</a>
+      </li>
+
+      {% if current_user.is_anonymous %}
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{{ url_for('login') }}">Login/Register</a>
+      </li>
+      {% else %}
+
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{{ url_for('forums') }}">Forums</a>
+      </li>
+
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{{ url_for('user', username=current_user.username) }}">My Profile</a>
+      </li>
+
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="{{ url_for('logout') }}">Logout</a>
+      </li>
+      {% endif %}
+
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead d-flex">
+    {% if current_user.is_anonymous %}
+    <div class="container text-center my-auto">
+      <h1 class="mb-1">Innovo</h1>
+      <h3 class="mb-5">
+        <em>A crowdsourced community for a healthier life</em>
+      </h3>
+      <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Learn More</a>
+    </div>
+    {% else %}
+    <div class="container text-center my-auto">
+      <h1 class="mb-1">Welcome home, {{ current_user.username }}.</h1>
+      <h3 class="mb-5">
+        This is your space.
+      </h3>
+      <a class="btn btn-primary btn-xl" href="{{ url_for('user', username=current_user.username) }}">My Page</a>
+      <a class="btn btn-primary btn-xl js-scroll-trigger" href="{{ url_for('forums') }}">Forums</a>
+    </div>
+    {% endif %}
+    <div class="overlay"></div>
+  </header>
+
+  <!-- About -->
+  <section class="content-section bg-light" id="about">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h2 class="mission">In‧no‧và‧re</h1>
+          <h3 class="mb-5">
+            <em>to innovate, to renew</em>
+          </h3>
+          <p class="missionStatement">Here at Innovo, it is our fundamental belief that healthcare is a universal right 
+            that must be acessible to everyone. In pursuit of this goal, we have built a comprehensive platform for the information 
+            age, bringing doctors and patients together into a single community. Together, we will innovate our way towards
+            greater healthcare accessbility.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="content-section bg-primary text-white text-center" id="services">
+    <div class="container">
+      <div class="content-section-heading">
+        <h3 class="text-secondary mb-0">Services</h3>
+        <h2 class="mb-5">What We Offer</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+          <span class="service-icon rounded-circle mx-auto mb-3">
+            <i class="icon-heart"></i>
+          </span>
+          <h4>
+            <strong>Crowdsourced Healthcare</strong>
+          </h4>
+          <p class="text-faded mb-0">Our platform connects people directly to doctors and each other, building a community dedicated to wellbeing.</p>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+          <span class="service-icon rounded-circle mx-auto mb-3">
+            <i class="icon-lock"></i>
+          </span>
+          <h4>
+            <strong>Advanced Security</strong>
+          </h4>
+          <p class="text-faded mb-0"><br>Security is our upmost priority. All passwords are salted and hashed, and all sensitive information is encrypted. </p>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+          <span class="service-icon rounded-circle mx-auto mb-3">
+            <i class="icon-chart"></i>
+          </span>
+          <h4>
+            <strong>Largescale Data</strong>
+          </h4>
+          <p class="text-faded mb-0"><br>We maintain large open-source sets of de-idenitified medical data, pushing the frontiers of scientific research.</p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <span class="service-icon rounded-circle mx-auto mb-3">
+            <i class="icon-people"></i>
+          </span>
+          <h4>
+            <strong>Volunteering Opportunities</strong>
+          </h4>
+          <p class="text-faded mb-0">Become a volunteer to connect with patients and support them in their journey. You will make a difference!</p>
+        </div>
+      </div>
+    </div>
+
+    <br><br><br><br><br><br>
+    <div class="container text-center">
+      <h2 class="mb-4">What are you waiting for?</h2>
+      <a href="{{ url_for('about') }}" class="btn btn-xl btn-light mr-4">More details...</a>
+      <a href="{{ url_for('login') }}" class="btn btn-xl btn-dark">Nothing. I'm in.</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <ul class="list-inline mb-5">
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle text-white mr-3" href="https://www.facebook.com/">
+            <i class="icon-social-facebook"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle text-white mr-3" href="https://twitter.com/">
+            <i class="icon-social-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle text-white" href="https://github.com/">
+            <i class="icon-social-github"></i>
+          </a>
+        </li>
+      </ul>
+      <p>Created By Scott Geng, Wenxuan Wan, and Alan Zhao for the 2020 Rice Hackathon</p>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{url_for('static', filename = 'vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{{ url_for('static',filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    
+    <script src="{{ url_for('static',filename='js/stylish-portfolio.min.js') }}"></script>
+
+
+</body>
+
+</html>

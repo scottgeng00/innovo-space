@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Hackrice Website</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
+
+    <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/jumbotron.css') }}">
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">[Website Name]</a>
+
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+
+         <li class="nav-item active">
+          <a class="nav-link" href="#">Doctors</a>
+         </li>
+
+         <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('forums') }}">Forum</a>
+         </li>
+                
+          <li class="nav-item active"> 
+          {% if current_user.is_anonymous %}
+          <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+          {% else %}
+          <li class="nav-item active"> 
+          <a class="nav-link" href="{{ url_for('user', username=current_user.username) }}">Profile</a>
+          </li>
+          <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+          {% endif %}
+          </li>
+
+      </ul>
+      
+      </div>
+    </nav>
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Our Mission Statement</h1>
+      <p>This pandemic has shown us all too clearly that access to medical resources is a luxury. We will create a <br> community of doctors and patients where everyone can access healthcare in a timely manner. </p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Crowdsourced Healthcare</h2>
+        <p>By using forums to “crowdsource” medical knowledge, we can provide the user with an approximation of their illness and removing the need for a lengthy appointment.  In addition, crowdsourcing healthcare will give disadvantaged communities greater and more affordable access to medical information.
+
+        </p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>Large Medical <br> Database  </h2>
+        <p>One of the pressing concerns in the field of medicine is a small sample size on the symptoms of certain illnesses. With our database, and in compliance with HIPPA laws, we can provide medical experts resources and references for diseases. </p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>Safety & <br>Encryption</h2>
+        <p>Patient privacy is very important to us and we understand our obligation to keep patient data secure. Our encryption will ensure that sensitive data can ONLY be access by the end user and practicing physicians. </p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+    </div>
+
+    <hr>
+    Logged in user: {{ current_user.username }}
+  </div> <!-- /container -->
+
+</main>
+
+<footer class="container">
+  <br>
+  <p>Created By Scott Geng, Wenxuan Wan, and Alan Zhao for the 2020 Rice Hackathon</p>
+
+</footer>
+
+</html>
