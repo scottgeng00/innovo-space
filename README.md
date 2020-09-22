@@ -5,9 +5,12 @@ Feel free to check it out!
 
 ## Running
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the required packages, and then run. By default, the webapp will be hosted at [localhost:5000](https://127.0.0.1:5000).
+Use [pip](https://pip.pypa.io/en/stable/) to install the required packages, and then run. By default, the webapp will be hosted at [localhost:5000](https://127.0.0.1:5000).
 
 ```bash
 pip install -r requirements.txt
 make run
 ```
+
+## TODO
+fix Heroku deployment
